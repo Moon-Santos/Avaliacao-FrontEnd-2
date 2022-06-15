@@ -1,0 +1,55 @@
+.background {
+  background-image: url(../images/pexels-luis-del-río-15286.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  opacity: 1;
+}
+body {
+  font-family: 'Times New Roman', Times, serif;
+}
+#greenText {
+  background-color: rgba(0, 250, 154, 0.8);
+  animation-duration: 5s;
+  animation-name: textoVerde;
+  animation-iteration-count: infinite;
+}
+@keyframes textoVerde {
+  0% {
+    transform: translatex(0px);
+  }
+  50% {
+    transform: translatex(-20px);
+  }
+  100% {
+    transform: translatex(0px);
+  }
+}
+.form-control::placeholder {
+  color: white;
+}
+.form-control {
+  height: 2.5rem;
+  background-color: rgba(0, 250, 154, 0.8);
+  border: none;
+  font-size: 16px;
+}
+.form-control:focus {
+  background-color: rgba(0, 250, 154, 0.8);
+  border: none;
+  box-shadow: 0 0 0 3px rgba(123, 62, 34, 0.8);
+}
+.btn-secondary {
+  height: 2rem;
+  background-color: rgba(123, 62, 34, 0.8);
+  border: none;
+}
+.btn-primary {
+  height: 2rem;
+  border: none;
+}
+.btn-secondary:hover {
+  background-color: rgb(210, 107, 59);
+}
+#table_h {
+  background-color: rgb(123, 62, 34);
+}
