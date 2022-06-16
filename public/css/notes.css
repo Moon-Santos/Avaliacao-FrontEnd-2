@@ -24,16 +24,16 @@ body {
     transform: translatex(0px);
   }
 }
-.form-control::placeholder {
+.input-inicial::placeholder {
   color: white;
 }
-.form-control {
+.input-inicial {
   height: 2.5rem;
   background-color: rgba(0, 250, 154, 0.8);
   border: none;
   font-size: 16px;
 }
-.form-control:focus {
+.input-inicial:focus {
   background-color: rgba(0, 250, 154, 0.8);
   border: none;
   box-shadow: 0 0 0 3px rgba(123, 62, 34, 0.8);
