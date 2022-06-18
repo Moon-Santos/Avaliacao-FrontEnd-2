@@ -16,6 +16,12 @@ const table = document.getElementById('table') as HTMLTableElement;
 
 const logOut = document.getElementById('logOut') as HTMLButtonElement;
 
+const modalEdit = new bootstrap.Modal(document.getElementById('editModal')!);
+
+const modalDelete = new bootstrap.Modal(
+  document.getElementById('modalDelete')!
+);
+
 const usernameStorageSession = sessionStorage.getItem(
   'usuarioLogado'
 ) as string;
@@ -88,11 +94,17 @@ function carregarHTMLTabela() {
                   <td class=''>${index}</td>
                   <td class=''>${mensagem.descricao}</td>
                   <td class=''>${mensagem.detalhamento}</td>
-                  <td class=''><button type="button" id='btn-editar' class='btn btn-primary' data-bs-toggle='modal' data-bs-target='#editModal'">EDITAR</button>
-                  <button id="btn-apagar"class='btn btn-secondary' type="button" onclick="apagarMensagem(${mensagem.id})">APAGAR</button>
+                  <td class=''><button type="button" id='btn-editar' class='btn btn-primary' onclick="showEditModal(${mensagem.id})">EDITAR</button>
+                  <button id="btn-apagar"class='btn btn-secondary' type="button" onclick="showDeleteModal(${mensagem.id})">APAGAR</button>
                   </td>
               </tr>`;
   }
+}
+
+function showDeleteModal(id: number) {
+  const saveDelete = document.getElementById('saveDelete')!;
+  modalDelete.show();
+  saveDelete.setAttribute('onclick', `apagarMensagem(${id})`);
 }
 
 function apagarMensagem(id: number) {
@@ -103,41 +115,51 @@ function apagarMensagem(id: number) {
   });
 
   if (mensagemIndex < 0) return;
-  if (confirm('Tem certeza que deseja deletar? ')) {
-    user.messages.splice(mensagemIndex, 1);
-    setItemLocalStorage(user);
-    carregarHTMLTabela();
-  }
+
+  user.messages.splice(mensagemIndex, 1);
+  setItemLocalStorage(user);
+  carregarHTMLTabela();
+  modalDelete.hide();
 }
 
-const myModal = document.getElementById('editModal') as HTMLDivElement;
-const myInput = document.getElementById('btn-editar') as HTMLDivElement;
+function showEditModal(id: number) {
+  const saveEdit = document.getElementById(
+    'btn-salvar-modal'
+  ) as HTMLButtonElement;
+  modalEdit.show();
+  saveEdit.setAttribute('onclick', `editarMensagem(${id})`);
+}
 
-myModal.addEventListener('shown.bs.modal', function () {
-  myInput.focus();
-});
+function editarMensagem(id: number) {
+  const descricao = document.getElementById('descricao') as HTMLInputElement;
+  const detalhamento = document.getElementById(
+    'detalhamento'
+  ) as HTMLInputElement;
 
-// function editarMensagem(id: number) {
-//   if (!descricao || !detalhamento) {
-//     alert('Você precisa digitar os valores correspondentes!');
-//     return;
-//   }
-//   if (descricao.length > 40 || detalhamento.length > 60) {
-//     alert('O máximo de caracteres que podes digitar é 40 e 60!');
-//     return;
-//   }
+  if (!descricao.value || !detalhamento.value) {
+    alert('Você precisa digitar os valores correspondentes!');
+    return;
+  }
 
-//   const userInfo = getItemLocalStorage();
-//   const indexMensagem = userInfo.messages.findIndex(
-//     (mensagem: any) => mensagem.id == id
-//   );
+  if (descricao.value.length > 40 || detalhamento.value.length > 60) {
+    alert('O máximo de caracteres que podes digitar é 40 e 60!');
+    return;
+  }
 
-//   userInfo.messages[indexMensagem].descricao = descricao;
-//   userInfo.messages[indexMensagem].detalhamento = detalhamento;
+  const userInfo = getItemLocalStorage();
+  const indexMensagem = userInfo.messages.findIndex(
+    (mensagem: any) => mensagem.id == id
+  );
 
-//   setItemLocalStorage(userInfo);
-//   carregarHTMLTabela();
-// }
+  userInfo.messages[indexMensagem].descricao = descricao.value;
+  userInfo.messages[indexMensagem].detalhamento = detalhamento.value;
+
+  setItemLocalStorage(userInfo);
+  carregarHTMLTabela();
+  descricao.value = '';
+  detalhamento.value = '';
+  modalEdit.hide();
+}
 
 function definirID() {
   let max = 0;

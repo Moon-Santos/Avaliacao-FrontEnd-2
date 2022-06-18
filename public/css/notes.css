@@ -24,6 +24,24 @@ body {
     transform: translatex(0px);
   }
 }
+/* width */
+#divScroll::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Scroll fundo */
+#divScroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+/* barra que sobe e desce */
+#divScroll::-webkit-scrollbar-thumb {
+  background: rgba(0, 250, 154, 1);
+  border-radius: 20px;
+}
+/* barra que sobe e desce com hover */
+#divScroll::-webkit-scrollbar-thumb:hover {
+  background: rgba(123, 62, 34, 1);
+}
 .input-inicial::placeholder {
   color: white;
 }
@@ -46,6 +64,8 @@ body {
 .btn-primary {
   height: 2rem;
   border: none;
+  opacity: 0.8;
+  color: #fff;
 }
 .btn-secondary:hover {
   background-color: rgb(210, 107, 59);

@@ -25,7 +25,7 @@
         <button id="logOut" class="btn align-self-end btn-primary">
           Log out
         </button>
-        <p id="greenText" class="h2 text-white p-2 rounded-3">MY NOTES</p>
+        <p id="greenText" class="h2 text-white p-2 rounded-3 text-uppercase">My notes</p>
         <div class="d-flex justify-content-center align-items-center">
           <form
             action=""
@@ -49,34 +49,23 @@
             <button
               type="submit"
               id="input_salvar"
-              class="text-nowrap btn-secondary btn"
+              class="text-nowrap btn-secondary btn text-uppercase"
               value="SALVAR"
             >
-              SALVAR RECADO
+              Salvar recado
             </button>
           </form>
         </div>
       </div>
       <div
-        class="row h-75 overflow-auto flex-column justify-content-start align-items-center"
+        id="divScroll" class="row h-75 overflow-auto flex-column justify-content-start align-items-center"
       >
-        <table class="table w-75">
-          <thead>
-            <tr id='table_h'class='text-center text-white'>
-              <th>ID</th>
-              <th>DESCRIÇÃO</th>
-              <th>DETALHAMENTO</th>
-              <th>AÇÃO</th>
-            </tr>;
-          </thead>
-          <tbody id="table">
-            <!--Aqui dentro cria as linhas de recados-->
-          </tbody>
+        <table id="table" class="table w-75  text-center ">
         </table>
       </div>
       </button>
 
-      <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal fade bg-success text-white" id="editModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
@@ -87,17 +76,37 @@
               <form>
                 <div class="mb-3">
                   <label for="input-descricao" class="col-form-label">Descrição:</label>
-                  <input type="text" class="form-control" id="input-descricao">
+                  <input type="text" class="form-control" id="descricao">
                 </div>
                 <div class="mb-3">
                   <label for="input-detalhamento" class="col-form-label">Detalhamento:</label>
-                  <input class="form-control" id="input-detalhamento"></input>
+                  <input class="form-control" id="detalhamento"></input>
                 </div>
               </form>
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
               <button id="btn-salvar-modal" type="button" class="btn btn-primary">Salvar mensagem</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="modalDelete" class="modal fade" tabindex="-1">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title text-uppercase">Apagar Mensagem</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <p>Deseja mesmo apagar?</p>
+              <div class="alert alert-danger" role="alert">
+                As mudanças serão definitivas até segunda ordem!
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button id="saveDelete" type="button" class="btn btn-primary">Delete</button>
             </div>
           </div>
         </div>
